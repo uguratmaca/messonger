@@ -11,10 +11,10 @@ var express = require('express'),
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.clientId, //secrets.secrets().clientId,
     clientSecret: process.env.clientSecret, //secrets.secrets().clientSecret,
-    redirectUri: 'http://localhost:8888/callback'
+    redirectUri: process.env.callback
 });
 
-const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const redirect_uri = process.env.callback; // Your redirect uri
 
 const generateRandomString = function (length) {
     var text = '';
