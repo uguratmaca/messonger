@@ -9,8 +9,8 @@ var express = require('express'),
 
 
 const spotifyApi = new SpotifyWebApi({
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
+    clientId: process.env.clientId, //secrets.secrets().clientId,
+    clientSecret: process.env.clientSecret, //secrets.secrets().clientSecret,
     redirectUri: 'http://localhost:8888/callback'
 });
 
@@ -46,7 +46,7 @@ app.get('/login', function (req, res) {
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
-            client_id: secrets.secrets().clientId,
+            client_id: process.env.clientId, //secrets.secrets().clientId,
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
@@ -74,7 +74,7 @@ app.get('/callback', function (req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (new Buffer(secrets.secrets().clientId + ':' + secrets.secrets().clientSecret).toString('base64'))
+                'Authorization': 'Basic ' + (new Buffer(process.env.clientId + ':' + process.env.clientSecret).toString('base64'))
             },
             json: true
         };
@@ -117,7 +117,7 @@ app.get('/refresh_token', function (req, res) {
     var refresh_token = req.query.refresh_token;
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
-        headers: { 'Authorization': 'Basic ' + (new Buffer(secrets.secrets().clientId + ':' + secrets.secrets().clientSecret).toString('base64')) },
+        headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.clientId + ':' + process.env.clientSecret).toString('base64')) },
         form: {
             grant_type: 'refresh_token',
             refresh_token: refresh_token
@@ -226,7 +226,4 @@ app.post('/registerToken', function (req, res) {
 });
 
 console.log('Listening on 8888');
-
-app.listen(process.env.PORT || 8888, function () {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.listen(8888);
