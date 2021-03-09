@@ -3,14 +3,14 @@ var express = require('express'),
     cors = require('cors'),
     querystring = require('querystring'),
     cookieParser = require('cookie-parser'),
-    secrets = require('./secrets'),
+    // secrets = require('./secrets'),
     SpotifyWebApi = require('spotify-web-api-node'),
     bodyParser = require('body-parser');
 
 
 const spotifyApi = new SpotifyWebApi({
-    clientId: secrets.secrets().clientId,
-    clientSecret: secrets.secrets().clientSecret,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
     redirectUri: 'http://localhost:8888/callback'
 });
 
