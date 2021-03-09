@@ -1,17 +1,16 @@
 {
   "name": "messonger",
   "version": "1.0.0",
-  "description": "",
+  "description": "tell your messages with song names",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uguratmaca/messonger.git"
   },
-  "author": "",
+  "author": "Uğur Atmaca",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/uguratmaca/messonger/issues"
